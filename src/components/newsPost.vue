@@ -1,5 +1,5 @@
 <template>
-  <v-card class="ma-10" max-width="500px">
+  <v-card class="ma-10" max-width="400px">
     <v-img class="white--text align-end" height="200px" :src="news.imageLink"></v-img>
 
     <v-card-title>{{ news.title }}</v-card-title>
