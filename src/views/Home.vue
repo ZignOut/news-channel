@@ -1,18 +1,135 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-  </div>
+  <v-container>
+    <v-row>
+      <search-bar :searchKeys="news" @search="search"></search-bar>
+    </v-row>
+
+    <v-row>
+      <news-post-group :allNews="news"></news-post-group>
+      <!-- <tab-test></tab-test> -->
+    </v-row>
+
+    <v-fab-transition>
+      <v-tooltip left>
+        <template v-slot:activator="{ on }">
+          <v-btn
+            v-on="on"
+            color="green darken-1"
+            class="ma-12"
+            fab
+            dark
+            large
+            absolute
+            bottom
+            right
+            fixed
+            href="/writePost"
+          >
+            <v-icon>mdi-plus</v-icon>
+          </v-btn>
+        </template>
+        <span class="content">Write Post</span>
+      </v-tooltip>
+    </v-fab-transition>
+  </v-container>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
+import searchBarVue from "../components/searchBar.vue";
+import newsPostGroupVue from "../components/newsPostGroup.vue";
+// import tabTestVue from '../components/tabTest.vue';
 
 export default {
-  name: 'Home',
+  name: "Home",
+
   components: {
-    HelloWorld
+    "search-bar": searchBarVue,
+    "news-post-group": newsPostGroupVue
+    // "tab-test": tabTestVue
+  },
+
+  data() {
+    return {
+      news: [
+        {
+          category: "Cele",
+          posts: [
+            {
+              imageLink:
+                "https://scontent.frgn5-2.fna.fbcdn.net/v/t1.15752-9/93015194_516910148994335_6257164753475469312_n.jpg?_nc_cat=107&_nc_sid=b96e70&_nc_eui2=AeHmWY9boix3W4pzDfuTU_yDM6Bl5O1mQHEzoGXk7WZAceW9n6cGY5gh4E4yRv-FoiWng_y1tHN8vUliZCIDi1F_&_nc_ohc=CzWM_LAi3egAX9eNjmi&_nc_ht=scontent.frgn5-2.fna&oh=94e5de10481e64cb4f1000d4e05f026f&oe=5EBAF509",
+              title: "ထင်အောင်ခန့်စော်ရသွားပီလား??",
+              date: "ဖေ၊ ၃၀၊ ၂၀၂၀",
+              shortText:
+                "ထင်အောင်ခန့် စော်ရသွားလေပီ ဆိုသောသီတင်းမှာ သီတင်းမှားသာဖြစ်ကြောင်း မအူပင်ကွန်ပျူတာတက္ကသိုလ်မှ ပြောရေးဆိုခွင့်ရှိသူ ခန့်ညီအောင်(ခ)အုပ်ကြီးမှ ပြောကြားပါတယ်။ ယခုအချိန်မှာတော့ သီတင်းမှားဖြန့်ဝေသူ ကိုကောင်းမြတ်ပိုင်ကို တောင်ဥက္ကလာမြို့မရဲစခန်းမှာ ဖမ်းဆီးထိန်းသိမ်းထားပီး တရားဥပဒေအရ အရေးယူသွားမည်ဖြစ်ကြောင်း တောင်ဥက္ကလာမြို့မရဲစခန်း စခန်းမှူး ကိုအဝတ်စုတ်မှ ကျွန်တော်တို့ စောက်ချောကြီး media ကိုဖြေကြားခဲ့ပါတယ်။"
+            },
+            {
+              imageLink:
+                "https://scontent.frgn5-2.fna.fbcdn.net/v/t1.15752-9/91694065_238494333866485_3181949288863236096_n.jpg?_nc_cat=108&_nc_sid=b96e70&_nc_eui2=AeFmBrRvdkDJgszTorn7n-HQLiD_v_h_ZRguIP-_-H9lGDYAjppQy-w4JUhHHVhlLakSgMFInqMY7YCiRVZGhQdT&_nc_ohc=HW_tPi0uPL4AX8YcQda&_nc_ht=scontent.frgn5-2.fna&oh=8001c7417a1e924fe2fbb06f825392db&oe=5EBB198E",
+              title: "ပဲမြစ်ကိစ္စ ဖိုးညီရှင်းပီ",
+              date: "ဇန်၊ ၂၁၊ ၂၀၂၀",
+              shortText:
+                "ယခင်ကွန်ပျူတာတက္ကသိုလ်(မအူပင်) ပါမောက္ခချုပ်ဖလား ချန်ပီယံဟောင်း ထွန်းထက်အောင်(ခ)ကိုဖိုးညီသည် လတ်တလော လူမှုကွန်ယက်ပေါ်မှာ မဖွယ်မယာပုံများ ပျံ့နှံ့နေပီး ပရိတ်သတ်အများရဲ့ 'ပဲမြစ်' ဟုပြောဆိုတိုက်ခိုက်ခြင်းကို ခံနေရသူဖြစ်ပါတယ်။ အဆိုပါ ကိစ္စရပ်နှင့်စပ်လျဥ်းပီး ကိုဖိုးညီကို မေးမြန်းရာမှာတော့ ယခုပျံ့နှံ့နေသော ပုံများမှ မိမိနှင့်မဆိုင်ကြောင်း မိမိမဟုတ်ကြောင်း၊ မယုံလျှင် နာရိစင်တဝိုက်တွင်မေးကြည့်နိုင်ကြောင်း၊ ယခုကိစ္စ စတင်ဖြန့်ဝေသူအား တရားဥပဒေအရ အရေးယူသွားမှာဖြစ်ကြောင်း ပြောကြားခဲ့ပါတယ်။"
+            },
+            {
+              imageLink:
+                "https://scontent.frgn5-2.fna.fbcdn.net/v/t1.15752-9/89436699_292038978435535_5010837842008473600_n.jpg?_nc_cat=105&_nc_sid=b96e70&_nc_ohc=ntovbeKiZ1UAX95wvIY&_nc_ht=scontent.frgn5-2.fna&oh=bf9a1d8a0cbe945491943549d4f5f4b6&oe=5EBCA949",
+              title: "ဖန်များ၏ခင်တွယ်မှုကို ခံယူနေရတဲ့ underground raperလေး ကို wizard",
+              date: "ဇန်၊ ၂၁၊ ၂၀၂၀",
+              shortText:
+                "မကြာသေးမှီက နှုတ်ခမ်းနီမလေးများကြား ရေပန်းစားလာသည့် UG အဆိုတော်လေး ကို wizard သည် သူ့ရဲ့အသစ်ထွက်ရှိလာတဲ့ album ကြောင့်ပရိတ်သတ်အများ၏ချစ်ခင်မှုကို ပိုရလာခဲ့သူတစ်ဦးလည်းဖြစ်ပါတယ်။ ဒီထက်မက ပိုပီးစိတ်ဝင်စားဖို့ကောင်းတဲ့ တစ်ချက်ကတော့ ကမ္ဘာကျော်အနုပညာရှင် 'Justin Beber' ဖန်များကို 'Believers' ဟုတင်စားသုံးနှုံးကြသလိုပဲ ကို အဝတ်စရဲ့ ဖန်များကိုလဲ အဝတ်စုတ်များချစ်စနိုးနဲ့ ခေါ်ကြတာပဲဖြစ်ပါတယ်။ အဝတ်စုတ်များက ကိုအဝတ်စကို ချစ်ခင်ကြသလိုပဲ ကိုအဝတ်စအနေနဲ့ကလဲ မိမိကိုအားပေးကြသော ဖန်များရှိတာ အလွန်ဝမ်းသာပါကြောင်း ကျေးဇူးလဲတင်ပါကြောင်း နောင်ဒီထက်ပိုပီးကြိုးစားသွားမည်ဖြစ်ပါကြောင်း ဖန်များကိုလဲတဖန်ပြန်ခင်ပါကြောင်း ယနေ့ခောတ် media ရဲ့ interview တစ်ခုမှာပြောကြားသွားခဲ့တာပဲဖြစ်ပါတယ်။"
+            }
+          ]
+        },
+        {
+          category: "news",
+          posts: [
+            {
+              imageLink:
+                "https://scontent.frgn5-2.fna.fbcdn.net/v/t1.15752-9/93015194_516910148994335_6257164753475469312_n.jpg?_nc_cat=107&_nc_sid=b96e70&_nc_eui2=AeHmWY9boix3W4pzDfuTU_yDM6Bl5O1mQHEzoGXk7WZAceW9n6cGY5gh4E4yRv-FoiWng_y1tHN8vUliZCIDi1F_&_nc_ohc=CzWM_LAi3egAX9eNjmi&_nc_ht=scontent.frgn5-2.fna&oh=94e5de10481e64cb4f1000d4e05f026f&oe=5EBAF509",
+              title: "ထင်အောင်ခန့်စော်ရသွားပီလား2??",
+              date: "ဖေ၊ ၃၀၊ ၂၀၂၀",
+              shortText:
+                "ထင်အောင်ခန့် စော်ရသွားလေပီ ဆိုသောသီတင်းမှာ သီတင်းမှားသာဖြစ်ကြောင်း မအူပင်ကွန်ပျူတာတက္ကသိုလ်မှ ပြောရေးဆိုခွင့်ရှိသူ ခန့်ညီအောင်(ခ)အုပ်ကြီးမှ ပြောကြားပါတယ်။ ယခုအချိန်မှာတော့ သီတင်းမှားဖြန့်ဝေသူ ကိုကောင်းမြတ်ပိုင်ကို တောင်ဥက္ကလာမြို့မရဲစခန်းမှာ ဖမ်းဆီးထိန်းသိမ်းထားပီး တရားဥပဒေအရ အရေးယူသွားမည်ဖြစ်ကြောင်း တောင်ဥက္ကလာမြို့မရဲစခန်း စခန်းမှူး ကိုအဝတ်စုတ်မှ ကျွန်တော်တို့ စောက်ချောကြီး media ကိုဖြေကြားခဲ့ပါတယ်။"
+            }
+          ]
+        },
+        {
+          category: "international",
+          posts: [
+            {
+              imageLink:
+                "https://scontent.frgn5-2.fna.fbcdn.net/v/t1.15752-9/93015194_516910148994335_6257164753475469312_n.jpg?_nc_cat=107&_nc_sid=b96e70&_nc_eui2=AeHmWY9boix3W4pzDfuTU_yDM6Bl5O1mQHEzoGXk7WZAceW9n6cGY5gh4E4yRv-FoiWng_y1tHN8vUliZCIDi1F_&_nc_ohc=CzWM_LAi3egAX9eNjmi&_nc_ht=scontent.frgn5-2.fna&oh=94e5de10481e64cb4f1000d4e05f026f&oe=5EBAF509",
+              title: "ထင်အောင်ခန့်စော်ရသွားပီလား2??",
+              date: "ဖေ၊ ၃၀၊ ၂၀၂၀",
+              shortText:
+                "ထင်အောင်ခန့် စော်ရသွားလေပီ ဆိုသောသီတင်းမှာ သီတင်းမှားသာဖြစ်ကြောင်း မအူပင်ကွန်ပျူတာတက္ကသိုလ်မှ ပြောရေးဆိုခွင့်ရှိသူ ခန့်ညီအောင်(ခ)အုပ်ကြီးမှ ပြောကြားပါတယ်။ ယခုအချိန်မှာတော့ သီတင်းမှားဖြန့်ဝေသူ ကိုကောင်းမြတ်ပိုင်ကို တောင်ဥက္ကလာမြို့မရဲစခန်းမှာ ဖမ်းဆီးထိန်းသိမ်းထားပီး တရားဥပဒေအရ အရေးယူသွားမည်ဖြစ်ကြောင်း တောင်ဥက္ကလာမြို့မရဲစခန်း စခန်းမှူး ကိုအဝတ်စုတ်မှ ကျွန်တော်တို့ စောက်ချောကြီး media ကိုဖြေကြားခဲ့ပါတယ်။"
+            },
+            {
+              imageLink:
+                "https://scontent.frgn5-2.fna.fbcdn.net/v/t1.15752-9/93015194_516910148994335_6257164753475469312_n.jpg?_nc_cat=107&_nc_sid=b96e70&_nc_eui2=AeHmWY9boix3W4pzDfuTU_yDM6Bl5O1mQHEzoGXk7WZAceW9n6cGY5gh4E4yRv-FoiWng_y1tHN8vUliZCIDi1F_&_nc_ohc=CzWM_LAi3egAX9eNjmi&_nc_ht=scontent.frgn5-2.fna&oh=94e5de10481e64cb4f1000d4e05f026f&oe=5EBAF509",
+              title: "ထင်အောင်ခန့်စော်ရသွားပီလား2??",
+              date: "ဖေ၊ ၃၀၊ ၂၀၂၀",
+              shortText:
+                "ထင်အောင်ခန့် စော်ရသွားလေပီ ဆိုသောသီတင်းမှာ သီတင်းမှားသာဖြစ်ကြောင်း မအူပင်ကွန်ပျူတာတက္ကသိုလ်မှ ပြောရေးဆိုခွင့်ရှိသူ ခန့်ညီအောင်(ခ)အုပ်ကြီးမှ ပြောကြားပါတယ်။ ယခုအချိန်မှာတော့ သီတင်းမှားဖြန့်ဝေသူ ကိုကောင်းမြတ်ပိုင်ကို တောင်ဥက္ကလာမြို့မရဲစခန်းမှာ ဖမ်းဆီးထိန်းသိမ်းထားပီး တရားဥပဒေအရ အရေးယူသွားမည်ဖြစ်ကြောင်း တောင်ဥက္ကလာမြို့မရဲစခန်း စခန်းမှူး ကိုအဝတ်စုတ်မှ ကျွန်တော်တို့ စောက်ချောကြီး media ကိုဖြေကြားခဲ့ပါတယ်။"
+            },
+            {
+              imageLink:
+                "https://scontent.frgn5-2.fna.fbcdn.net/v/t1.15752-9/93015194_516910148994335_6257164753475469312_n.jpg?_nc_cat=107&_nc_sid=b96e70&_nc_eui2=AeHmWY9boix3W4pzDfuTU_yDM6Bl5O1mQHEzoGXk7WZAceW9n6cGY5gh4E4yRv-FoiWng_y1tHN8vUliZCIDi1F_&_nc_ohc=CzWM_LAi3egAX9eNjmi&_nc_ht=scontent.frgn5-2.fna&oh=94e5de10481e64cb4f1000d4e05f026f&oe=5EBAF509",
+              title: "ထင်အောင်ခန့်စော်ရသွားပီလား2??",
+              date: "ဖေ၊ ၃၀၊ ၂၀၂၀",
+              shortText:
+                "ထင်အောင်ခန့် စော်ရသွားလေပီ ဆိုသောသီတင်းမှာ သီတင်းမှားသာဖြစ်ကြောင်း မအူပင်ကွန်ပျူတာတက္ကသိုလ်မှ ပြောရေးဆိုခွင့်ရှိသူ ခန့်ညီအောင်(ခ)အုပ်ကြီးမှ ပြောကြားပါတယ်။ ယခုအချိန်မှာတော့ သီတင်းမှားဖြန့်ဝေသူ ကိုကောင်းမြတ်ပိုင်ကို တောင်ဥက္ကလာမြို့မရဲစခန်းမှာ ဖမ်းဆီးထိန်းသိမ်းထားပီး တရားဥပဒေအရ အရေးယူသွားမည်ဖြစ်ကြောင်း တောင်ဥက္ကလာမြို့မရဲစခန်း စခန်းမှူး ကိုအဝတ်စုတ်မှ ကျွန်တော်တို့ စောက်ချောကြီး media ကိုဖြေကြားခဲ့ပါတယ်။"
+            }
+          ]
+        }
+      ]
+    };
+  },
+
+  methods: {
+    search: function(searchValue) {
+      this.searchHistory.push(searchValue);
+    }
   }
-}
+};
 </script>
