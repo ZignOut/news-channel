@@ -1,13 +1,8 @@
 <template>
   <v-container>
-    <v-row>
-      <search-bar :searchKeys="news" @search="search"></search-bar>
-    </v-row>
+    <search-bar :searchKeys="news" @search="search"></search-bar>
 
-    <v-row>
-      <news-post-group :allNews="news"></news-post-group>
-      <!-- <tab-test></tab-test> -->
-    </v-row>
+    <news-post-group :allNews="news"></news-post-group>
 
     <v-fab-transition>
       <v-tooltip left>
@@ -18,7 +13,6 @@
             class="ma-12"
             fab
             dark
-            large
             absolute
             bottom
             right
@@ -73,7 +67,8 @@ export default {
             {
               imageLink:
                 "https://scontent.frgn5-2.fna.fbcdn.net/v/t1.15752-9/89436699_292038978435535_5010837842008473600_n.jpg?_nc_cat=105&_nc_sid=b96e70&_nc_ohc=ntovbeKiZ1UAX95wvIY&_nc_ht=scontent.frgn5-2.fna&oh=bf9a1d8a0cbe945491943549d4f5f4b6&oe=5EBCA949",
-              title: "ဖန်များ၏ခင်တွယ်မှုကို ခံယူနေရတဲ့ underground raperလေး ကို wizard",
+              title:
+                "ဖန်များ၏ခင်တွယ်မှုကို ခံယူနေရတဲ့ underground raperလေး ကို wizard",
               date: "ဇန်၊ ၂၁၊ ၂၀၂၀",
               shortText:
                 "မကြာသေးမှီက နှုတ်ခမ်းနီမလေးများကြား ရေပန်းစားလာသည့် UG အဆိုတော်လေး ကို wizard သည် သူ့ရဲ့အသစ်ထွက်ရှိလာတဲ့ album ကြောင့်ပရိတ်သတ်အများ၏ချစ်ခင်မှုကို ပိုရလာခဲ့သူတစ်ဦးလည်းဖြစ်ပါတယ်။ ဒီထက်မက ပိုပီးစိတ်ဝင်စားဖို့ကောင်းတဲ့ တစ်ချက်ကတော့ ကမ္ဘာကျော်အနုပညာရှင် 'Justin Beber' ဖန်များကို 'Believers' ဟုတင်စားသုံးနှုံးကြသလိုပဲ ကို အဝတ်စရဲ့ ဖန်များကိုလဲ အဝတ်စုတ်များချစ်စနိုးနဲ့ ခေါ်ကြတာပဲဖြစ်ပါတယ်။ အဝတ်စုတ်များက ကိုအဝတ်စကို ချစ်ခင်ကြသလိုပဲ ကိုအဝတ်စအနေနဲ့ကလဲ မိမိကိုအားပေးကြသော ဖန်များရှိတာ အလွန်ဝမ်းသာပါကြောင်း ကျေးဇူးလဲတင်ပါကြောင်း နောင်ဒီထက်ပိုပီးကြိုးစားသွားမည်ဖြစ်ပါကြောင်း ဖန်များကိုလဲတဖန်ပြန်ခင်ပါကြောင်း ယနေ့ခောတ် media ရဲ့ interview တစ်ခုမှာပြောကြားသွားခဲ့တာပဲဖြစ်ပါတယ်။"

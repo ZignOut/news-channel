@@ -1,5 +1,5 @@
 <template>
-  <v-card class="ma-10" max-width="400px">
+  <v-card :max-width="cardWidth" class="mt-5 ma-lg-10">
     <v-img class="white--text align-end" height="200px" :src="news.imageLink"></v-img>
 
     <v-card-title>{{ news.title }}</v-card-title>
@@ -37,9 +37,8 @@
   </v-card>
 </template>
 
-<script lang="ts">
-import Vue from "vue";
-export default Vue.extend({
+<script>
+export default {
   name: "news-post",
 
   props: ["news"],
@@ -49,6 +48,25 @@ export default Vue.extend({
       saved: false,
       liked: false
     };
+  },
+
+  computed: {
+    cardWidth() {
+      switch (this.$vuetify.breakpoint.name) {
+        case "xs":
+          return "auto";
+        case "sm":
+          return "auto";
+        case "md":
+          return "500px";
+        case "lg":
+          return "500px";
+        case "xl":
+          return "600px";
+        default:
+          return "auto";
+      }
+    }
   }
-});
+};
 </script>

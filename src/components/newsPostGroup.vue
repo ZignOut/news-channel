@@ -1,15 +1,20 @@
 <template>
-  <v-container>
+  <div class="newspostgroup">
     <v-tabs v-model="tab" color="green">
       <v-tab v-for="news in newsGroup" :key="news.category" class="subtitle-2">{{ news.category }}</v-tab>
     </v-tabs>
 
     <v-tabs-items v-model="tab">
       <v-tab-item v-for="news in newsGroup" :key="news.posts">
-        <news-post :news="newsPost" v-for="newsPost in news.posts" :key="newsPost" class="d-inline-block"></news-post>
+        <news-post
+          :news="newsPost"
+          v-for="newsPost in news.posts"
+          :key="newsPost"
+          class="d-inline-block"
+        ></news-post>
       </v-tab-item>
     </v-tabs-items>
-  </v-container>
+  </div>
 </template>
 
 <script lang="ts">

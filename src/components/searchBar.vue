@@ -1,5 +1,5 @@
 <template>
-  <v-container>
+  <div>
     <v-textarea
       autofocus
       type="text"
@@ -18,7 +18,7 @@
     <v-chip-group column active-class="green white--text">
       <v-chip v-for="(tag) in tags" :key="tag">{{ tag }}</v-chip>
     </v-chip-group>
-  </v-container>
+  </div>
 </template>
 
 <script>
