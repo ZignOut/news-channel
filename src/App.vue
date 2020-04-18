@@ -26,7 +26,7 @@
     <v-app-bar color="white" elevation="0" dense app :clipped-left="$vuetify.breakpoint.lgAndUp">
       <v-toolbar-title>
         <v-btn :ripple="false" depressed href="/">
-          <span class="title green--text text-uppercase">News</span>
+          <span class="headline font-weight-medium green--text text-uppercase">News</span>
           <span>Channel</span>
         </v-btn>
       </v-toolbar-title>
